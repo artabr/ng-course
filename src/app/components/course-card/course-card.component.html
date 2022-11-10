@@ -1,31 +1,27 @@
 <div class="p-6 m-10 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-  <div class="flex">
-    <div>
+  <div class="flex gap-10">
+    <div class="flex flex-col grow">
       <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Video Course 1. Name tag</h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ course?.title }}</h5>
       </a>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Learn about where you can find course descriptions, what information they include, how they work, and details
-        about various components of a course description. Course descriptions report information about a university or
-        college's classes. They're published both in course catalogs that outline degree requirements and in course
-        schedules that contain descriptions for all courses offered during a particular semester.
-      </p>
+      <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        {{ course?.description }}
+      </div>
     </div>
     <div class="flex flex-col flex-none w-48 gap-2">
       <div class="flex gap-4">
-        <div class="inline-flex text-gray-500 text-sm">1h 28 min</div>
-        <div class="inline-flex text-gray-500 text-sm">08/28/2020</div>
+        <div class="inline-flex text-gray-500 text-sm">{{ course?.duration }}</div>
+        <div class="inline-flex text-gray-500 text-sm">{{ course?.creationDate }}</div>
       </div>
       <div class="flex gap-4">
         <a
-          href="#"
-          class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-cyan-500 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+          class="cursor-pointer inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-cyan-500 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
         >
           Edit
         </a>
         <a
-          href="#"
-          class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-cyan-500 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+          (click)="onDeleteClick()"
+          class="cursor-pointer inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-cyan-500 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
         >
           Delete
         </a>

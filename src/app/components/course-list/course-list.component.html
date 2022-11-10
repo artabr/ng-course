@@ -1,0 +1,8 @@
+<div class="pb-20">
+  <app-course-card
+    *ngFor="let course of courses; trackBy: trackByCourses"
+    [course]="course"
+    (deleteCard)="onDeleteCard($event)"
+  ></app-course-card>
+  <app-load-more></app-load-more>
+</div>

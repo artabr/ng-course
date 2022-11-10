@@ -8,6 +8,9 @@ import { CourseCardComponent } from './components/course-card/course-card.compon
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { LoadMoreComponent } from './components/load-more/load-more.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +20,10 @@ import { FooterComponent } from './components/footer/footer.component';
     BreadcrumbsComponent,
     HeaderComponent,
     FooterComponent,
+    CourseListComponent,
+    LoadMoreComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
