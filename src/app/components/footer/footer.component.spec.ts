@@ -19,4 +19,12 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('raises the fetchApi event when clicked', () => {
+    spyOn(component.fetchApi, 'emit');
+
+    component.onFetchClick();
+
+    expect(component.fetchApi.emit).toHaveBeenCalled();
+  });
 });
