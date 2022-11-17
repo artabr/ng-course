@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
 })
-export class SearchbarComponent implements OnInit {
+export class SearchbarComponent {
   inputText: string = '';
+  consoleText: string = '';
   @Input() searchText?: string;
   @Output() searchTextChange = new EventEmitter<string>();
 
@@ -16,10 +17,7 @@ export class SearchbarComponent implements OnInit {
   }
 
   onSearchClick() {
-    console.log(`Input text is: ${this.inputText}`);
-  }
-
-  ngOnInit(): void {
-    console.log();
+    this.consoleText = `Input text is: ${this.inputText}`;
+    console.log(this.consoleText);
   }
 }

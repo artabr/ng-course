@@ -21,12 +21,28 @@ describe('LoadMoreComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('raises the eventMessageText event when clicked', () => {
+  it('should emit the eventMessageText event when clicked', () => {
     const comp = new LoadMoreComponent();
 
     comp.eventMessageText
       .pipe(first())
       .subscribe((emittedEventMessageText) => expect(emittedEventMessageText).toBe('eventMessageText'));
     comp.onClick();
+  });
+
+  it('should emit the eventMessageText event when clicked with event', () => {
+    const comp = new LoadMoreComponent();
+    const dummyEvent = new MouseEvent('click');
+    const mockEvent = {
+      ...dummyEvent,
+      target: {
+        innerText: 'innerText',
+      } as HTMLElement,
+    } as MouseEvent;
+
+    comp.eventMessageText
+      .pipe(first())
+      .subscribe((emittedEventMessageText) => expect(emittedEventMessageText).toBe('eventMessageText'));
+    comp.onClick(mockEvent);
   });
 });

@@ -19,4 +19,11 @@ describe('BreadcrumbsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should correctly render the passed @Input `text` value', () => {
+    component.text = 'Hi there';
+
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.innerHTML).toContain('Hi there');
+  });
 });

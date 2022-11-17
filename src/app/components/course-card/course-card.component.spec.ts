@@ -7,6 +7,12 @@ import { Course } from '../../types/types';
 describe('CourseCardComponent', () => {
   let component: CourseCardComponent;
   let fixture: ComponentFixture<CourseCardComponent>;
+  const course: Course = {
+    id: '1',
+    title: 'Title',
+    creationDate: '1000',
+    duration: 100,
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,17 +28,28 @@ describe('CourseCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('raises the deleteCard event when clicked', () => {
+  it('should emit the deleteCard event when clicked', () => {
     const comp = new CourseCardComponent();
-    const course: Course = {
-      id: '1',
-      title: 'Title',
-      creationDate: '1000',
-      duration: 100,
-    };
     comp.course = course;
 
     comp.deleteCard.pipe(first()).subscribe((deletedCard) => expect(deletedCard).toBe(course.id));
     comp.onDeleteClick();
+  });
+
+  it('should correctly render the passed @Input `course` value', () => {
+    component.course = course;
+
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.innerHTML).toContain('Title');
+  });
+
+  it('should test the emitter with a Jasmine spy', () => {
+    spyOn(component.deleteCard, 'emit');
+    component.course = course;
+
+    const button = fixture.nativeElement.querySelector('.testSelector');
+    button.click();
+
+    expect(component.deleteCard.emit).toHaveBeenCalledWith('1');
   });
 });

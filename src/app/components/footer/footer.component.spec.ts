@@ -20,7 +20,7 @@ describe('FooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('raises the fetchApi event when clicked', () => {
+  it('should emit the fetchApi event when clicked', () => {
     spyOn(component.fetchApi, 'emit');
 
     component.onFetchClick();
