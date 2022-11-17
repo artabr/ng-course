@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Course } from '../../types/types';
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
 })
-export class CourseListComponent implements OnInit, OnChanges {
+export class CourseListComponent implements OnChanges {
   @Input() courses?: Course[];
   @Output() coursesChange = new EventEmitter<Course[]>();
 
@@ -23,9 +23,5 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   trackByCourses(index: number, course: Course): string {
     return course.id;
-  }
-
-  ngOnInit(): void {
-    console.log();
   }
 }
