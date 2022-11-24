@@ -1,4 +1,8 @@
-<div class="p-6 my-10 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+<div
+  appCourseStatus
+  [creationDate]="course?.creationDate ?? ''"
+  class="p-6 my-10 bg-white rounded-lg border-4 border-transparent shadow-md dark:bg-gray-800 dark:border-gray-700"
+>
   <div class="flex gap-10">
     <div class="flex flex-col grow">
       <a href="#">

@@ -16,6 +16,7 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { OrderSwitcherComponent } from './components/order-switcher/order-switcher.component';
 import { NoCoursesComponent } from './components/no-courses/no-courses.component';
+import { CourseStatusDirective } from './directives/course-status.directive';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NoCoursesComponent } from './components/no-courses/no-courses.component
     FilterPipe,
     OrderSwitcherComponent,
     NoCoursesComponent,
+    CourseStatusDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
