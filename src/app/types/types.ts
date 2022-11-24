@@ -4,6 +4,7 @@ export interface Course {
   creationDate: string;
   duration: number;
   description?: string;
+  topRated?: boolean;
 }
 
 export interface User {
@@ -11,3 +12,5 @@ export interface User {
   firstName: string;
   lastName?: string;
 }
+
+export type ListOrder = 'ASC' | 'DESC';

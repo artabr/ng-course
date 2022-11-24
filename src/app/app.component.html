@@ -1,5 +1,8 @@
 <app-header></app-header>
-<app-breadcrumbs [text]="defaultSearchText"></app-breadcrumbs>
-<app-searchbar [(searchText)]="defaultSearchText"></app-searchbar>
-<app-course-list [(courses)]="courses"></app-course-list>
+<app-breadcrumbs></app-breadcrumbs>
+<div class="p-10">
+  <app-searchbar (searchClick)="onSearchClick($event)"></app-searchbar>
+  <app-order-switcher (changeOrder)="onChangeOrder($event)"></app-order-switcher>
+  <app-course-list [courses]="courses" [order]="order" [searchText]="searchText"></app-course-list>
+</div>
 <app-footer (fetchApi)="onFetchApi()"></app-footer>

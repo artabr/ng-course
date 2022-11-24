@@ -9,6 +9,7 @@ export class SearchbarComponent {
   consoleText: string = '';
   @Input() searchText?: string;
   @Output() searchTextChange = new EventEmitter<string>();
+  @Output() searchClick = new EventEmitter<string>();
 
   constructor() {}
 
@@ -17,7 +18,6 @@ export class SearchbarComponent {
   }
 
   onSearchClick() {
-    this.consoleText = `Input text is: ${this.inputText}`;
-    console.log(this.consoleText);
+    this.searchClick.emit(this.inputText);
   }
 }

@@ -2,3 +2,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .card-top-rated div {
+    background-color: lavenderblush;
+  }
+
+  .card-top-rated .card-star {
+    display: block;
+  }
+
+  .card-star {
+
+  }
+
+  .testSelector {
+
+  }
+}
