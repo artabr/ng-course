@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Course } from './types/types';
+import { Course, ListOrder } from './types/types';
 import { courses } from 'src/mocks/mockData';
 
 @Component({
@@ -8,10 +8,19 @@ import { courses } from 'src/mocks/mockData';
 })
 export class AppComponent {
   title = 'ng-course';
-  defaultSearchText?: string;
-  courses?: Course[];
+  courses?: Course[] = courses;
+  searchText?: string;
+  order?: ListOrder;
 
   onFetchApi() {
     this.courses = courses;
+  }
+
+  onSearchClick(event: string) {
+    this.searchText = event;
+  }
+
+  onChangeOrder(event: ListOrder) {
+    this.order = event;
   }
 }

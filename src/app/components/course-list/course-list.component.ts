@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Course } from '../../types/types';
+import { Course, ListOrder } from '../../types/types';
 
 @Component({
   selector: 'app-course-list',
@@ -7,6 +7,8 @@ import { Course } from '../../types/types';
 })
 export class CourseListComponent implements OnChanges {
   @Input() courses?: Course[];
+  @Input() order?: ListOrder;
+  @Input() searchText?: string;
   @Output() coursesChange = new EventEmitter<Course[]>();
 
   constructor() {}
