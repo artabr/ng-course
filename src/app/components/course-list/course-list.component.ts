@@ -1,26 +1,33 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Course, ListOrder } from '../../types/types';
+import { CoursesService } from '../../services/courses.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
 })
-export class CourseListComponent implements OnChanges {
+export class CourseListComponent {
   @Input() courses?: Course[];
   @Input() order?: ListOrder;
   @Input() searchText?: string;
-  @Output() coursesChange = new EventEmitter<Course[]>();
+  @Output() coursesChange = new EventEmitter();
 
-  constructor() {}
+  constructor(private coursesService: CoursesService, private modalService: ModalService) {}
 
   onDeleteCard(event: string) {
     console.log('Card deleted. The ID:', event);
-    this.courses = this.courses?.filter((item) => item.id !== event);
-    this.coursesChange.emit(this.courses);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('CourseList changes:', changes);
+    this.modalService.openModal('Delete item?', 'Do you really want to delete this item?', () => {
+      this.coursesService.removeCourse(event);
+      // TODO как сделать, чтобы не добавлять сюда этот эммитер?
+      // ? эммитер нужен чтобы сообщить о том, что родительскому компоненту, что состояние изменилось
+      this.coursesChange.emit();
+    });
+    // TODO можно ли изменить corses на уровне этого компонета не сообщая родителю?
+    // ? сейчас флоу такой: после успешного выполнения сервиса modal сообщаем родителю об изменении состояния
+    // ? он запрашивает новые данные у сервиса cources, они прорастают вниз в этот же компонент
+    // ? можно ли не делать такой флоу, а сразу изменить cources здесь. Как принято в angular?
+    this.coursesChange.emit();
   }
 
   trackByCourses(index: number, course: Course): string {

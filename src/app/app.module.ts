@@ -17,6 +17,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { OrderSwitcherComponent } from './components/order-switcher/order-switcher.component';
 import { NoCoursesComponent } from './components/no-courses/no-courses.component';
 import { CourseStatusDirective } from './directives/course-status.directive';
+import { ModalComponent } from './components/modal/modal.component';
+import { IfAuthenticatedDirective } from './directives/if-authenticated.directive';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { CourseStatusDirective } from './directives/course-status.directive';
     OrderSwitcherComponent,
     NoCoursesComponent,
     CourseStatusDirective,
+    ModalComponent,
+    IfAuthenticatedDirective,
+    LoginPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

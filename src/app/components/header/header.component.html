@@ -1,16 +1,18 @@
-<nav class="bg-zinc-700 px-2 sm:px-4 py-2.5">
+<nav class="relative bg-zinc-700">
   <div class="container flex flex-wrap justify-between items-center mx-auto">
     <a href="https://epam.com/" class="flex items-center">
       <img src="/assets/logo.svg" class="mr-3 h-6 sm:h-9" alt="Video Course" />
       <span class="self-center text-white text-xl font-semibold whitespace-nowrap">Video Course</span>
     </a>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+    <div class="h-24 hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul appIfAuthenticated class="flex flex-row p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
         <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-white md:hover:text-cyan-500 md:p-0">User login</a>
+          <a class="cursor-pointer block py-2 pr-4 pl-3 text-white md:hover:text-cyan-500 md:p-0">{{ username }}</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-white md:hover:text-cyan-500 md:p-0">Log out</a>
+          <a (click)="onLogout()" class="cursor-pointer block py-2 pr-4 pl-3 text-white md:hover:text-cyan-500 md:p-0"
+            >Log out</a
+          >
         </li>
       </ul>
     </div>
