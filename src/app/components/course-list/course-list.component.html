@@ -5,6 +5,6 @@
     [course]="course"
     (deleteCard)="onDeleteCard($event)"
   ></app-course-card>
-  <app-no-courses *ngIf="courses?.length"></app-no-courses>
+  <app-no-courses *ngIf="courses?.length === 0"></app-no-courses>
   <app-load-more></app-load-more>
 </div>

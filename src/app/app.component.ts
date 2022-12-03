@@ -1,19 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Course, ListOrder } from './types/types';
-import { courses } from 'src/mocks/mockData';
+import { CoursesService } from './services/courses.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ng-course';
-  courses?: Course[] = courses;
+  courses?: Course[] = [];
   searchText?: string;
   order?: ListOrder;
 
+  constructor(private coursesService: CoursesService) {}
+
+  ngOnInit() {
+    this.courses = this.coursesService.getCourses();
+  }
+
   onFetchApi() {
-    this.courses = courses;
+    console.log(this.coursesService.getCourses());
+    this.courses = this.coursesService.getCourses();
+  }
+
+  onCourseChange() {
+    this.courses = this.coursesService.getCourses();
   }
 
   onSearchClick(event: string) {
