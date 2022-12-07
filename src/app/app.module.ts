@@ -20,6 +20,8 @@ import { CourseStatusDirective } from './directives/course-status.directive';
 import { ModalComponent } from './components/modal/modal.component';
 import { IfAuthenticatedDirective } from './directives/if-authenticated.directive';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { IfGuestDirective } from './directives/if-guest.directive';
+import { AddCoursePageComponent } from './components/add-course-page/add-course-page.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     ModalComponent,
     IfAuthenticatedDirective,
     LoginPageComponent,
+    IfGuestDirective,
+    AddCoursePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

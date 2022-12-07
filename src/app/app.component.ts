@@ -11,11 +11,20 @@ export class AppComponent implements OnInit {
   courses?: Course[] = [];
   searchText?: string;
   order?: ListOrder;
+  route: 'main' | 'new-course' = 'main';
 
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit() {
     this.courses = this.coursesService.getCourses();
+  }
+
+  onAddCourse() {
+    this.route = 'new-course';
+  }
+
+  onCancelAddCourse() {
+    this.route = 'main';
   }
 
   onFetchApi() {
