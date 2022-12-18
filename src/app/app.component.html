@@ -1,29 +1,5 @@
 <app-header></app-header>
 <app-breadcrumbs appIfAuthenticated></app-breadcrumbs>
-<div *ngIf="route === 'main'" appIfAuthenticated class="p-10">
-  <app-searchbar (searchClick)="onSearchClick($event)"></app-searchbar>
-  <app-order-switcher (changeOrder)="onChangeOrder($event)"></app-order-switcher>
-  <div class="justify-end flex">
-    <button
-      (click)="onAddCourse()"
-      type="button"
-      class="text-white bg-cyan-500 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
-    >
-      Add course
-    </button>
-  </div>
-  <app-course-list
-    [courses]="courses"
-    [order]="order"
-    [searchText]="searchText"
-    (coursesChange)="onCourseChange()"
-  ></app-course-list>
-</div>
-<app-add-course-page
-  *ngIf="route === 'new-course'"
-  appIfAuthenticated
-  (cancelClick)="onCancelAddCourse()"
-></app-add-course-page>
-<app-login-page appIfGuest></app-login-page>
-<app-footer (fetchApi)="onFetchApi()"></app-footer>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
 <app-modal></app-modal>

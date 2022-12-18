@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -7,11 +8,11 @@ import { Subject } from 'rxjs';
 export class AuthService {
   private username: string = '';
   private password: string = '';
-  private authenticated: boolean = true;
+  private authenticated: boolean = false;
 
   authenticatedChange: Subject<boolean> = new Subject<boolean>();
 
-  constructor() {
+  constructor(private router: Router) {
     this.authenticatedChange.subscribe((value) => {
       this.authenticated = value;
     });
@@ -24,6 +25,7 @@ export class AuthService {
     localStorage?.setItem('password', password);
     this.authenticatedChange.next(true);
     console.log('User logged in.');
+    this.router.navigate(['/']);
   }
 
   logout() {
@@ -33,6 +35,7 @@ export class AuthService {
     localStorage?.setItem('password', '');
     this.authenticatedChange.next(false);
     console.log('User logged out.');
+    this.router.navigate(['login']);
   }
 
   isAuthenticated() {
