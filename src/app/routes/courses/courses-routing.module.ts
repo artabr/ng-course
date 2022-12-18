@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CourseListPageComponent } from '../../components/course-list-page/course-list-page.component';
+import { AuthGuardService } from '../../services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
     data: {
       breadcrumb: 'Courses',
     },
+    canActivate: [AuthGuardService],
   },
 ];
 
