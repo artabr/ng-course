@@ -2,7 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CourseListPageComponent } from '../../components/course-list-page/course-list-page.component';
 
-const routes: Routes = [{ path: 'courses', component: CourseListPageComponent }];
+const routes: Routes = [
+  {
+    path: 'courses',
+    component: CourseListPageComponent,
+    data: {
+      breadcrumb: 'Courses',
+    },
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

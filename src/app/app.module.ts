@@ -19,6 +19,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 // Directives
 import { IfAuthenticatedDirective } from './directives/if-authenticated.directive';
 import { IfGuestDirective } from './directives/if-guest.directive';
+import { CourseModule } from './routes/course/course.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { IfGuestDirective } from './directives/if-guest.directive';
     IfGuestDirective,
     NotFoundPageComponent,
   ],
-  imports: [BrowserModule, FormsModule, AddCourseModule, LoginModule, CoursesModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, AddCourseModule, LoginModule, CoursesModule, CourseModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

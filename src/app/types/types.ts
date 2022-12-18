@@ -14,3 +14,8 @@ export interface User {
 }
 
 export type ListOrder = 'ASC' | 'DESC';
+
+export type Breadcrumb = {
+  label: string;
+  url: string;
+};

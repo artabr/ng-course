@@ -6,6 +6,9 @@ const routes: Routes = [
   {
     path: 'courses/new',
     component: AddCoursePageComponent,
+    data: {
+      breadcrumb: 'Add new course',
+    },
   },
 ];
 
