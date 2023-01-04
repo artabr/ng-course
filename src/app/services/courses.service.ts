@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Course } from '../types/types';
-import { courses } from '../../mocks/mockData';
+import { Course, CourseResponse } from '../types/types';
 import { v4 as uuid } from 'uuid';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +9,26 @@ import { v4 as uuid } from 'uuid';
 export class CoursesService {
   private courses: Course[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     console.log('Created new CoursesService.');
-    this.courses = courses;
+    this.getCourses();
   }
 
-  getCourses() {
-    return this.courses;
+  getCourses(callback?: (response: Course[]) => void) {
+    this.http
+      .get<CourseResponse[]>('https://angularmentoringserver.onrender.com/courses?start=0&count=10')
+      .subscribe((response) => {
+        if (response) {
+          this.courses = response.map((item) => ({
+            ...item,
+            title: item.name,
+            creationDate: item.date,
+            duration: item.length,
+            id: item.id.toString(),
+          }));
+          if (callback) callback(this.courses);
+        }
+      });
   }
 
   createCourse(newCourseData: Omit<Course, 'id'>) {

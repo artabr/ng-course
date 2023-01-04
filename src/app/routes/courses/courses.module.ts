@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Components
 import { CoursesRoutingModule } from './courses-routing.module';
@@ -32,7 +33,7 @@ import { FilterPipe } from '../../pipes/filter.pipe';
     SearchbarComponent,
     OrderSwitcherComponent,
   ],
-  imports: [CommonModule, CoursesRoutingModule, FormsModule],
+  imports: [CommonModule, CoursesRoutingModule, FormsModule, HttpClientModule],
   exports: [CourseCardComponent, CourseListComponent, LoadMoreComponent, NoCoursesComponent, CourseListPageComponent],
 })
 export class CoursesModule {}

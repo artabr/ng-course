@@ -11,7 +11,9 @@ export class HeaderComponent {
 
   constructor(private authService: AuthService) {
     this.authService.authenticatedChange.subscribe(() => {
-      this.username = this.authService.getUserInfo();
+      this.authService.getUserInfo((fullname) => {
+        this.username = fullname;
+      });
     });
   }
 

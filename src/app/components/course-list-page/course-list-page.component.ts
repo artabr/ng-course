@@ -14,11 +14,15 @@ export class CourseListPageComponent implements OnInit {
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit() {
-    this.courses = this.coursesService.getCourses();
+    this.coursesService.getCourses((response) => {
+      this.courses = response;
+    });
   }
 
   onCourseChange() {
-    this.courses = this.coursesService.getCourses();
+    this.coursesService.getCourses((response) => {
+      this.courses = response;
+    });
   }
 
   onSearchClick(event: string) {
