@@ -16,17 +16,20 @@ export class CourseListPageComponent implements OnInit {
   ngOnInit() {
     this.coursesService.getCourses((response) => {
       this.courses = response;
-    });
+    }, this.searchText);
   }
 
   onCourseChange() {
     this.coursesService.getCourses((response) => {
       this.courses = response;
-    });
+    }, this.searchText);
   }
 
   onSearchClick(event: string) {
     this.searchText = event;
+    this.coursesService.getCourses((response) => {
+      this.courses = response;
+    }, this.searchText);
   }
 
   onChangeOrder(event: ListOrder) {

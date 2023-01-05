@@ -1,6 +1,6 @@
 <div class="pb-20">
   <app-course-card
-    *ngFor="let course of courses | orderBy: order | filter: searchText; trackBy: trackByCourses"
+    *ngFor="let course of courses | orderBy: order; trackBy: trackByCourses"
     [ngClass]="{ 'card-top-rated': course.topRated }"
     [course]="course"
     (deleteCard)="onDeleteCard($event)"

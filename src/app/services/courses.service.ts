@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Course, CourseResponse } from '../types/types';
-import { v4 as uuid } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,9 +13,13 @@ export class CoursesService {
     this.getCourses();
   }
 
-  getCourses(callback?: (response: Course[]) => void) {
+  getCourses(callback?: (response: Course[]) => void, textFragment?: string) {
     this.http
-      .get<CourseResponse[]>('https://angularmentoringserver.onrender.com/courses?start=0&count=10')
+      .get<CourseResponse[]>(
+        `https://angularmentoringserver.onrender.com/courses?start=0&count=10${
+          textFragment && '&textFragment=' + textFragment
+        }`,
+      )
       .subscribe((response) => {
         if (response) {
           this.courses = response.map((item) => ({
@@ -31,8 +34,21 @@ export class CoursesService {
       });
   }
 
-  createCourse(newCourseData: Omit<Course, 'id'>) {
-    this.courses.push({ id: uuid(), ...newCourseData });
+  createCourse(newCourseData: Omit<Course, 'id'>, onSuccess: () => void) {
+    this.http
+      .post(`https://angularmentoringserver.onrender.com/courses`, {
+        id: Math.floor(100000 + Math.random() * 900000),
+        name: newCourseData.title,
+        date: newCourseData.creationDate,
+        length: newCourseData.duration,
+        authors: {},
+        isTopRated: false,
+      })
+      .subscribe((response) => {
+        if (response) {
+          onSuccess();
+        }
+      });
 
     return this.courses;
   }
@@ -41,20 +57,30 @@ export class CoursesService {
     return this.courses.find((course) => course.id === id);
   }
 
-  updateCourse(course: Course) {
-    this.courses = this.courses.map((item) => {
-      if (item.id === course.id) return course;
-      return item;
-    });
+  updateCourse(course: Course, onSuccess: () => void) {
+    this.http
+      .patch(`https://angularmentoringserver.onrender.com/courses/${course.id}`, {
+        id: course.id,
+        name: course.title,
+        date: course.creationDate,
+        length: course.duration,
+        authors: {},
+        isTopRated: false,
+      })
+      .subscribe((response) => {
+        if (response) {
+          onSuccess();
+        }
+      });
 
     return course;
   }
 
-  removeCourse(id: string) {
-    const removedCourse = this.getCourseById(id);
-
-    this.courses = this.courses.filter((item) => item.id !== id);
-
-    return removedCourse;
+  removeCourse(id: string, onSuccess: () => void) {
+    this.http.delete(`https://angularmentoringserver.onrender.com/courses/${id}`).subscribe((response) => {
+      if (response) {
+        onSuccess();
+      }
+    });
   }
 }
