@@ -7,6 +7,34 @@ export interface Course {
   topRated?: boolean;
 }
 
+export type CourseResponse = {
+  id: number;
+  name: string;
+  date: string;
+  length: number;
+  description: string;
+  authors: {
+    id: number;
+    name: string;
+  };
+  isTopRated: boolean;
+};
+
+export type LoginResponse = {
+  token: string;
+};
+
+export type UserInfoResponse = {
+  id: number;
+  token: string;
+  name: {
+    first: string;
+    last: string;
+  };
+  login: string;
+  password: string;
+};
+
 export interface User {
   id: string;
   firstName: string;

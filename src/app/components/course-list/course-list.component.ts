@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course, ListOrder } from '../../types/types';
 import { CoursesService } from '../../services/courses.service';
 import { ModalService } from '../../services/modal.service';
@@ -18,10 +18,9 @@ export class CourseListComponent {
   onDeleteCard(event: string) {
     console.log('Card deleted. The ID:', event);
     this.modalService.openModal('Delete item?', 'Do you really want to delete this item?', () => {
-      this.coursesService.removeCourse(event);
+      this.coursesService.removeCourse(event, () => this.coursesChange.emit());
       // TODO как сделать, чтобы не добавлять сюда этот эммитер?
       // ? эммитер нужен чтобы сообщить о том, что родительскому компоненту, что состояние изменилось
-      this.coursesChange.emit();
     });
     // TODO можно ли изменить corses на уровне этого компонета не сообщая родителю?
     // ? сейчас флоу такой: после успешного выполнения сервиса modal сообщаем родителю об изменении состояния

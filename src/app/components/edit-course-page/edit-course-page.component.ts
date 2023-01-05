@@ -10,12 +10,36 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditCoursePageComponent implements OnInit {
   course?: Course;
+  courseId: string = '';
+  courseTitle: string = '';
+  courseDescription: string = '';
+  courseDuration: string = '';
 
   constructor(private location: Location, private coursesService: CoursesService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) this.course = this.coursesService.getCourseById(id);
+    if (id) {
+      this.course = this.coursesService.getCourseById(id);
+      this.courseId = this.course?.id ?? '';
+      this.courseTitle = this.course?.title ?? '';
+      this.courseDescription = this.course?.description ?? '';
+      this.courseDuration = this.course?.duration.toString() ?? '';
+    }
+  }
+
+  onSaveClick() {
+    this.coursesService.updateCourse(
+      {
+        creationDate: '',
+        ...this.course,
+        id: this.courseId,
+        title: this.courseTitle,
+        description: this.courseDescription,
+        duration: Number(this.courseDuration),
+      },
+      () => this.location.back(),
+    );
   }
 
   onCancelClick() {

@@ -6,8 +6,8 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login-page.component.html',
 })
 export class LoginPageComponent {
-  username: string = '';
-  password: string = '';
+  username: string = 'Morales';
+  password: string = 'id';
 
   constructor(private authService: AuthService) {}
 
